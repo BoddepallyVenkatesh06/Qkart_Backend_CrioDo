@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "ff5e9f51-ac7c-4d74-b74b-0640b728fc2b",
+		"name": "QKart Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"item": [
+				{
+					"name": "/:id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/users/<user-id>",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"users",
+								"<user-id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/:id?q=address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/users/<user-id>?q=address",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"users",
+								"<user-id>"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "address"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"This is my long random address hopefully satisfying the minimum length criteria\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/users/<user-id>",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"users",
+								"<user-id>"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/auth",
+			"item": [
+				{
+					"name": "/login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"crio-users@gmail.com\",\n    \"password\": \"criouser123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/auth/login",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"crio-users\",\n    \"email\": \"crio-users@gmail.com\",\n    \"password\": \"criouser123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/auth/register",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/products",
+			"item": [
+				{
+					"name": "/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/products",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/:productId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/products/<product-id>",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"products",
+								"<product-id>"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/cart",
+			"item": [
+				{
+					"name": "/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/cart",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"<product-id>\",\n    \"quantity\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/cart",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"<product-id>\",\n    \"quantity\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/cart",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{workspaceIp}}:8082/v1/cart/checkout",
+							"host": [
+								"{{workspaceIp}}"
+							],
+							"port": "8082",
+							"path": [
+								"v1",
+								"cart",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDEyODk0ZDQ4NzVhMTA2MzcwM2VjMTciLCJpYXQiOjE2MTE4Mjc1MzMsImV4cCI6MTYxMTg0MTkzMywidHlwZSI6..."
+		},
+		{
+			"key": "ip",
+			"value": "13.233.8.95"
+		},
+		{
+			"key": "userid",
+			"value": "600fe5fc1b35ad73eff74920"
+		}
+	]
+}
